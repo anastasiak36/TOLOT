@@ -29,7 +29,7 @@ public class QuizGenerator {
                 score++;
             }
             else {
-                System.out.println("That is wrong :(, you will get to try again later");
+                System.out.println("That is wrong :(, you will get to try again later!");
             }
             System.out.println();
         }
