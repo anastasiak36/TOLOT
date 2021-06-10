@@ -11,12 +11,20 @@
                 <p2 style = "position:relative; float:left; margin-top: 50px; margin-left: 10px;"><font size = "+2">Type in the total number of choices!</font></p2>
                 <label for="fname" style = "position:relative; float:left; margin-top: 100px; margin-left:10px"><font size = "+2">Number of choices:</font></label>
                 <input type="number" id="numOfItems" name="numOfItems"style = "height:20px; width:175px; position:relative;float:left;margin-top: 100px; margin-right:30px"><br><br>
-                <input type = "button" value = "Generate Quiz!" name = "quizgenerator" onclick = "getVariable()">
+                <input type = "button" id = "generateQuiz" value = "Generate Quiz!" name = "quizgenerator" >
             </form>
 
             <script>
+                document.getElementById("generateQuiz").onclick = getVariable;
                 function getVariable() {
+                    var result = document.querySelector('#result');
                     var number = document.getElementById("numOfItems");
+                    result.innerHTML = '';
+                    for (var i = 0; i < parseInt(number); i++) {
+                        var wrapper = document.createElement('div');
+                        wrapper.innerHTML = '<input type="text" placeholder="textfield ' + i + '" />';
+                        result.appendChild(wrapper);
+                    }
                 }
                 
             </script>
