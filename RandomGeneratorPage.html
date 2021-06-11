@@ -3,6 +3,7 @@
     <head>
     <title>Random Generator</title>
         <script>
+            
             function getVariable() {
                 var number = parseInt(document.getElementById("numOfItems").value);
                 var choices = document.getElementById("choices");
@@ -17,26 +18,33 @@
                 button.setAttribute("type", "button");
                 button.setAttribute("id", "choiceButton");
                 button.setAttribute("value", "Generate Your Choice!")
-                button.setAttribute("onclick", "generateChoice(number)")
+                button.setAttribute("onclick", "generateChoice()")
                 buttonDiv.appendChild(button);
             }
-            function generateChoice(number) {
+            function createArray(number) {
                 var inputs = [];
                 for (var i = 0; i < number; i++) {
                     var inputValue = document.getElementById(i).value;
                     inputs.push(inputValue);
                 }
-                var random = inputs[Math.floor(Math.random() * number)];
+                return inputs;
+            }
+            function generateChoice() {
+                var number = parseInt(document.getElementById("numOfItems").value);
+                inputs = createArray(number);
+                var randomNumber = Math.floor(Math.random() * number)
+                var randomInput = inputs[randomNumber];
+                inputs.splice(randomNumber, 1);
                 var choiceDiv = document.getElementById("randomChoice");
                 heading = document.createElement("h4");
-                heading.innerHTML = random;
-                document.body.appendChild(heading);
+                heading.innerHTML = randomInput;
+                choiceDiv.appendChild(heading);
             }
         
     </script>
     </head>
         <body style = "background-color: lightcyan;margin-left: auto;margin-right: auto;width: 1450px;" >
-            <meta name = "viewport" content = "width = device-width, intitial-scale = 1.0">
+            <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
             <h1><center>Welcome to the Random Generator!</center></h1>
             
             <form>
@@ -47,8 +55,8 @@
                 </div>
                 
                 <div id= "choices" style = "text-align:center;position:relative;margin-top: 100px;"></div>
-                <div id= "randomChoice" style = "text-align:center;position:relative;margin-top: 110px;"></div>
-                <div id = "buttonChoice" style ="text-align:center;position:relative;margin-top: 120px;"></div>
+                <div id= "randomChoice" style = "text-align:center;position:relative;"></div>
+                <div id = "buttonChoice" style ="text-align:center;position:relative;margin-top: 10px;"></div>
             </form>
 
             
