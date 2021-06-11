@@ -9,9 +9,29 @@
                 
                 for (var i = 0; i < number; i++) {
                     var input = document.createElement("input");
+                    input.setAttribute("id", i);
                     choices.appendChild(input)
+                }
+                var button = document.createElement("input");
+                var buttonDiv = document.getElementById("buttonChoice");
+                button.setAttribute("type", "button");
+                button.setAttribute("id", "choiceButton");
+                button.setAttribute("value", "Generate Your Choice!")
+                button.setAttribute("onclick", "generateChoice(number)")
+                buttonDiv.appendChild(button);
             }
-        }
+            function generateChoice(number) {
+                var inputs = [];
+                for (var i = 0; i < number; i++) {
+                    var inputValue = document.getElementById(i).value;
+                    inputs.push(inputValue);
+                }
+                var random = inputs[Math.floor(Math.random() * number)];
+                var choiceDiv = document.getElementById("randomChoice");
+                heading = document.createElement("h4");
+                heading.innerHTML = random;
+                document.body.appendChild(heading);
+            }
         
     </script>
     </head>
@@ -23,10 +43,12 @@
                 <div style = "text-align: center;">
                     <label for="numOfItems" style = "position:relative;margin-top: 100px;"><font size = "+2">Number of choices:</font></label>
                     <input type="number" id="numOfItems" style = "height:20px; width:175px; position:relative;margin-top: 50px;"><br><br>
-                    <input type = "button" id = "generateQuiz" value = "Generate Quiz!" onclick = "getVariable()">
+                    <input type = "button" id = "generateFillIns" value = "Submit!" onclick = "getVariable()">
                 </div>
                 
                 <div id= "choices" style = "text-align:center;position:relative;margin-top: 100px;"></div>
+                <div id= "randomChoice" style = "text-align:center;position:relative;margin-top: 110px;"></div>
+                <div id = "buttonChoice" style ="text-align:center;position:relative;margin-top: 120px;"></div>
             </form>
 
             
