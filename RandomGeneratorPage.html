@@ -11,6 +11,8 @@
                 for (var i = 0; i < number; i++) {
                     var input = document.createElement("input");
                     input.setAttribute("id", i);
+                    input.setAttribute("placeholder", "Choice: " + (i + 1));
+                    input.setAttribute("style", "position: relative; margin-right: 10px; margin-top: 10px;");
                     choices.appendChild(input)
                 }
                 var button = document.createElement("input");

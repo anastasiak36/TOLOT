@@ -41,20 +41,32 @@
                 button.setAttribute("style", "background-color: LightSkyBlue");
                 buttonDiv.appendChild(button);
             }
-            function createArray(number) {
+            function createTermsArray(number) {
                 var terms = new Array(number);
-                var definitions = new Array(number);
                 for (var i = 0; i < terms.length; i++) {
                     var term = document.getElementById("term" + i).value;
                     terms[i] = term;
+                }
+            }
+            function createDefinitionsArray(number) {
+                var definitions = new Array(number);
+                for (var i = 0; i < terms.length; i++) {
                     var def = document.getElementById("def" + i).value;
                     definitions[i] = def;
                 }
-                
             }
             function quiz() {
                 var number = parseInt(document.getElementById("numOfItems").value);
-                var quiz = createArray(number);
+                var termArray = createTermArray(number);
+                var definitionArray = createDefinitionsArray(number);
+
+                var quizDiv = document.getElementById("quizDivider");
+                var instruction = document.createElement("h5");
+                instruction.innerHTML = "Type in the correct term for the given definition.";
+                quizDiv.appendChild(instruction);
+                //while (definitions.length > 0) {
+
+                //}
             }
         </script>
     </head>
@@ -77,6 +89,7 @@
             <div id = "buttonExit" style ="text-align: right;position:relative;margin-top: 10px;margin-right: 300px;">
             </div>
         </div>
+        <div id = "quizDivider" style = "text-align:center; position: relative; margin-top: 50px"></div>
         
     </form>
 
