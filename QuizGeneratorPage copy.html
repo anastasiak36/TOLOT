@@ -58,13 +58,11 @@
                 }
                 return definitions;
             }
-            function buttonCall() {
+            function createQuiz() {
                 var number = parseInt(document.getElementById("numOfItems").value);
                 var termArray = createTermsArray(number);
                 var definitionArray = createDefinitionsArray(number);
-                quiz(termArray, definitionArray);
-            }
-            function createQuiz() {
+
                 var quizDiv = document.getElementById("quizDivider");
                 var instruction = document.createElement("h4");
                 instruction.innerHTML = "Type in the correct term for the given definition.";
@@ -75,13 +73,18 @@
                 checkAnswerButton.setAttribute("type", "button");
                 checkAnswerButton.setAttribute("id", "checkAnswerButton");
                 checkAnswerButton.setAttribute("value", "Check Answer");
-                checkAnswerButton.setAttribute("onclick", "buttonCall()");
+                checkAnswerButton.setAttribute("onclick", "quiz()");
                 checkAnswerButton.setAttribute("style", "background-color: lightskyblue");
                 answerButtonDiv.appendChild(checkAnswerButton);
-                buttonCall();
+                quiz();
             }
             var counter = 0;
-            function quiz(termArray, definitionArray) {
+            function quiz() {
+                var number = parseInt(document.getElementById("numOfItems").value);
+                if (counter == 0) {
+                    var termArray = createTermsArray(number);
+                    var definitionArray = createDefinitionsArray(number);
+                }
                 var randomDefinition = Math.floor(Math.random() * definitionArray.length);
 
                 var quizDiv = document.getElementById("quizDivider");
@@ -92,12 +95,13 @@
                 quizDiv.appendChild(label)
 
                 var answer = document.createElement("input");
-                answer.setAttribute("id", "answer" + counter);
+                answer.setAttribute("id", "answer");
                 answer.setAttribute("style", "position: relative; margin-top: 10px");
                 quizDiv.appendChild(answer);
-                var userAnswer = document.getElementById("answer" + counter).value;
 
-                if (userAnswer === termArray[randomDefinition]) {
+                var userAnswer = document.getElementById("answer").value;
+                var correct = checkAnswer(termArray, definitionArray, randomDefinition, userAnswer);
+                if (correct == true) {
                     termArray.splice(randomDefinition, 1);
                     definitionArray.splice(randomDefinition, 1);
                     var declaration = document.createElement("h4");
@@ -105,15 +109,22 @@
                     declaration.setAttribute("style", "color: darkgreen")
                     quizDiv.appendChild(declaration);
                 }
-                else{
+                else {
                     var declaration = document.createElement("h4");
                     declaration.innerHTML = "That is wrong :(";
                     declaration.setAttribute("style", "color: crimson")
                     quizDiv.appendChild(declaration);
                 }
-                counter += 1;
+                
             }
-            
+            function checkAnswer(terms, definitions, index, answer) {
+                if (answer === terms[index]) {
+                    // move stuff from quiz into this
+                }
+                    
+                else {}
+                    
+            }
         </script>
     </head>
 <body style = "background-color: lightcyan;margin-left: auto;margin-right: auto;width: 1450px;" >
