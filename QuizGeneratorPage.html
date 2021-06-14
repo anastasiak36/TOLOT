@@ -9,12 +9,14 @@
                 header.innerHTML = "Type in the Terms and Definitions";
                 choices.appendChild(header);
 
+                //create the correct number of dividers for the inputs
                 for (var j = 0; j < number; j++) {
                     var divider = document.createElement("div");
                     divider.setAttribute("id", j);
                     divider.setAttribute("style", "position: relative; margin-top: 10px;");
                     choices.appendChild(divider);
                 }
+                //create the inputs 
                 for (var i = 0; i < number; i++) {
                     var currentDivider = document.getElementById(i);
                     for (var l = 0; l < 2; l++) {
@@ -33,6 +35,7 @@
                     var lineBreak = document.createElement("br");
                     currentDivider.appendChild(lineBreak);
                 }
+                // create the start quiz button
                 var button = document.createElement("input");
                 var buttonDiv = document.getElementById("buttonQuiz");
                 button.setAttribute("type", "button");
@@ -42,6 +45,7 @@
                 button.setAttribute("style", "background-color: LightSkyBlue");
                 buttonDiv.appendChild(button);
             }
+            //creates the array for the terms entered
             function createTermsArray(number) {
                 var terms = new Array(number);
                 for (var i = 0; i < terms.length; i++) {
@@ -50,6 +54,7 @@
                 }
                 return terms;
             }
+            //creates the array for the definitions entered
             function createDefinitionsArray(number) {
                 var definitions = new Array(number);
                 for (var i = 0; i < definitions.length; i++) {
@@ -58,13 +63,15 @@
                 }
                 return definitions;
             }
+            //this is the function that the button calls that runs the quiz
             function buttonCall() {
                 var number = parseInt(document.getElementById("numOfItems").value);
                 var termArray = createTermsArray(number);
                 var definitionArray = createDefinitionsArray(number);
                 quiz(termArray, definitionArray);
             }
-            function createQuiz() {
+            //this is the function that creates the label and input for the questions
+            function createQuestion() {
                 var quizDiv = document.getElementById("quizDivider");
                 var instruction = document.createElement("h4");
                 instruction.innerHTML = "Type in the correct term for the given definition.";
