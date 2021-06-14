@@ -2,8 +2,13 @@
     <head>
         <title>Quiz Generator</title>
         <script>
+            var number;
+            var termArray;
+            var definitionArray;
+            var randomDefinition;
+            var userAnswer
             function generateTermFillIns() {
-                var number = parseInt(document.getElementById("numOfItems").value);
+                number = parseInt(document.getElementById("numOfItems").value);
                 var choices = document.getElementById("choices");
                 var header = document.createElement("h4");
                 header.innerHTML = "Type in the Terms and Definitions";
@@ -41,7 +46,7 @@
                 button.setAttribute("type", "button");
                 button.setAttribute("id", "quizButton");
                 button.setAttribute("value", "Start Quiz!");
-                button.setAttribute("onclick", "createQuiz()");
+                button.setAttribute("onclick", "startQuiz()");
                 button.setAttribute("style", "background-color: LightSkyBlue");
                 buttonDiv.appendChild(button);
             }
@@ -49,7 +54,7 @@
             function createTermsArray(number) {
                 var terms = new Array(number);
                 for (var i = 0; i < terms.length; i++) {
-                    var term = document.getElementById("term" + i).value;
+                    var term = (document.getElementById("term" + i).value);
                     terms[i] = term;
                 }
                 return terms;
@@ -58,20 +63,15 @@
             function createDefinitionsArray(number) {
                 var definitions = new Array(number);
                 for (var i = 0; i < definitions.length; i++) {
-                    var def = document.getElementById("def" + i).value;
+                    var def = (document.getElementById("def" + i).value);
                     definitions[i] = def;
                 }
                 return definitions;
             }
-            //this is the function that the button calls that runs the quiz
-            function buttonCall() {
-                var number = parseInt(document.getElementById("numOfItems").value);
-                var termArray = createTermsArray(number);
-                var definitionArray = createDefinitionsArray(number);
-                quiz(termArray, definitionArray);
-            }
             //this is the function that creates the label and input for the questions
-            function createQuestion() {
+            termArray = createTermsArray(number);
+            definitionArray = createDefinitionsArray(number);
+            function startQuiz() {
                 var quizDiv = document.getElementById("quizDivider");
                 var instruction = document.createElement("h4");
                 instruction.innerHTML = "Type in the correct term for the given definition.";
@@ -82,14 +82,14 @@
                 checkAnswerButton.setAttribute("type", "button");
                 checkAnswerButton.setAttribute("id", "checkAnswerButton");
                 checkAnswerButton.setAttribute("value", "Check Answer");
-                checkAnswerButton.setAttribute("onclick", "buttonCall()");
+                checkAnswerButton.setAttribute("onclick", "checkAnswer()");
                 checkAnswerButton.setAttribute("style", "background-color: lightskyblue");
                 answerButtonDiv.appendChild(checkAnswerButton);
-                buttonCall();
+                quiz();
             }
             var counter = 0;
-            function quiz(termArray, definitionArray) {
-                var randomDefinition = Math.floor(Math.random() * definitionArray.length);
+            function quiz() {
+                randomDefinition = Math.floor(Math.random() * definitionArray.length);
 
                 var quizDiv = document.getElementById("quizDivider");
                 var label = document.createElement("label");
@@ -102,8 +102,10 @@
                 answer.setAttribute("id", "answer" + counter);
                 answer.setAttribute("style", "position: relative; margin-top: 10px");
                 quizDiv.appendChild(answer);
-                var userAnswer = document.getElementById("answer" + counter).value;
-
+                userAnswer = document.getElementById("answer" + counter).value;
+                counter += 1;
+            }
+            function checkAnswer() {
                 if (userAnswer === termArray[randomDefinition]) {
                     termArray.splice(randomDefinition, 1);
                     definitionArray.splice(randomDefinition, 1);
@@ -118,7 +120,7 @@
                     declaration.setAttribute("style", "color: crimson")
                     quizDiv.appendChild(declaration);
                 }
-                counter += 1;
+                quiz();
             }
             
         </script>
