@@ -21,7 +21,7 @@
                 button.setAttribute("id", "choiceButton");
                 button.setAttribute("value", "Generate Your Choice!");
                 button.setAttribute("onclick", "generateChoice()");
-                button.setAttribute("style", "background-color: LightSkyBlue");
+                button.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 325px");
                 buttonDiv.appendChild(button);
             }
             function createArray(number) {
@@ -35,9 +35,9 @@
             function createExitButton() {
                 exitButton = document.createElement("button");
                 exitButton.setAttribute("type", "button");
-                exitButton.setAttribute("style", "background-color: LightSkyBlue")
+                exitButton.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 500px")
                 exitButton.innerHTML = '<a href = "https://docs.google.com/document/d/1lRX08KfooogJ5UWpGvHhUAu1y28BKMNt7fEHm4FpRlQ/edit"> Return Home</a>'
-                var exitButtonDiv = document.getElementById("buttonExit");
+                var exitButtonDiv = document.getElementById("buttonChoice");
                 exitButtonDiv.appendChild(exitButton);
             }
             var counter = 0;
@@ -83,12 +83,7 @@
                 </div>
                 
                 <div id= "choices" style = "text-align:center;position:relative;margin-top: 100px;"></div>
-                <div id= "buttonDivider">
-                    <div id = "buttonChoice" style ="text-align: left;position:relative;margin-top: 10px;margin-left: 300px;">
-                    </div>
-
-                    <div id = "buttonExit" style ="text-align: right;position:relative;margin-top: 10px;margin-right: 300px;">
-                    </div>
+                <div id = "buttonChoice" style ="position:relative;margin-top: 10px">
                 </div>
                 <div id= "randomChoice" style = "text-align:center;position:relative;"></div>
                 

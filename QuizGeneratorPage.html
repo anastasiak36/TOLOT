@@ -47,9 +47,20 @@
                 button.setAttribute("id", "quizButton");
                 button.setAttribute("value", "Start Quiz!");
                 button.setAttribute("onclick", "startQuiz()");
-                button.setAttribute("style", "background-color: LightSkyBlue");
+                button.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 325px");
                 buttonDiv.appendChild(button);
+                createExitButton();
             }
+
+            function createExitButton() {
+                exitButton = document.createElement("button");
+                exitButton.setAttribute("type", "button");
+                exitButton.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 625px")
+                exitButton.innerHTML = '<a href = "https://docs.google.com/document/d/1lRX08KfooogJ5UWpGvHhUAu1y28BKMNt7fEHm4FpRlQ/edit"> Return Home</a>'
+                var exitButtonDiv = document.getElementById("buttonQuiz");
+                exitButtonDiv.appendChild(exitButton);
+            }
+
             //creates the array for the terms entered
             function createTermsArray() {
                 terms = new Array(number)
@@ -120,6 +131,14 @@
                     declaration.innerHTML = "You are correct! :)";
                     declaration.setAttribute("style", "color: darkgreen")
                     quizDiv.appendChild(declaration);
+                    var star = document.createElement("img");
+                    star.setAttribute("src", "Images/star.png");
+                    star.setAttribute("alt", "star");
+                    star.setAttribute("height", "60px");
+                    star.setAttribute("width", "60px");
+                    var starDiv = document.getElementById("starDivider");
+                    starDiv.appendChild(star);
+
                 }
                 else{
                     var declaration = document.createElement("h4");
@@ -134,6 +153,15 @@
                     heading.setAttribute("style", "color: blue")
                     heading.innerHTML = "Congrats, you finished the quiz! Return to the main page or start over by refreshing!";
                     quizDiv.appendChild(heading);
+
+                    var congratulationsImage = document.createElement("img");
+                    congratulationsImage.setAttribute("src", "Images/congratulations.png");
+                    congratulationsImage.setAttribute("alt", "congrats!");
+                    congratulationsImage.setAttribute("height", "300px");
+                    congratulationsImage.setAttribute("width", "600px");
+                    var congratsDiv = document.getElementById("congratulationsDivider");
+                    congratsDiv.appendChild(congratulationsImage);
+
                     var checkAnswerButton = document.getElementById("checkAnswerButton");
                     checkAnswerButton.parentNode.removeChild(checkAnswerButton);
                 }
@@ -156,7 +184,7 @@
         
         <div id= "choices" style = "text-align:center;position:relative;margin-top: 50px;"></div>
         <div id= "buttonDivider">
-            <div id = "buttonQuiz" style ="text-align: left;position:relative;margin-top: 10px;margin-left: 300px;">
+            <div id = "buttonQuiz" style ="position:relative;margin-top: 10px;">
             </div>
 
             <div id = "buttonExit" style ="text-align: right;position:relative;margin-top: 10px;margin-right: 300px;">
@@ -164,6 +192,8 @@
         </div>
         <div id = "quizDivider" style = "text-align:center; position: relative; margin-top: 50px"></div>
         <div id = "answerButtonDivider" style = "text-align:center; position: relative; margin-top: 10px"></div>
+        <div id = "congratulationsDivider" style = "text-align:center; position: relative; margin-top: 20px"></div>
+        <div id = "starDivider" style = "text-align:right; position: relative; margin-top: 20px; margin-right: 200px"></div>
         
     </form>
 
