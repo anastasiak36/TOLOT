@@ -6,7 +6,7 @@
             var termArray;
             var definitionArray;
             var randomDefinition;
-            var userAnswer
+            var userAnswer;
             function generateTermFillIns() {
                 number = parseInt(document.getElementById("numOfItems").value);
                 var choices = document.getElementById("choices");
@@ -49,28 +49,29 @@
                 button.setAttribute("onclick", "startQuiz()");
                 button.setAttribute("style", "background-color: LightSkyBlue");
                 buttonDiv.appendChild(button);
+                
+                createTermsArray();
+                createDefinitionsArray();
             }
             //creates the array for the terms entered
-            function createTermsArray(number) {
+            function createTermsArray() {
                 var terms = new Array(number);
                 for (var i = 0; i < terms.length; i++) {
                     var term = (document.getElementById("term" + i).value);
                     terms[i] = term;
                 }
-                return terms;
+                termArray = terms;
             }
             //creates the array for the definitions entered
-            function createDefinitionsArray(number) {
+            function createDefinitionsArray() {
                 var definitions = new Array(number);
                 for (var i = 0; i < definitions.length; i++) {
                     var def = (document.getElementById("def" + i).value);
                     definitions[i] = def;
                 }
-                return definitions;
+                definitionArray = definitions;
             }
             //this is the function that creates the label and input for the questions
-            termArray = createTermsArray(number);
-            definitionArray = createDefinitionsArray(number);
             function startQuiz() {
                 var quizDiv = document.getElementById("quizDivider");
                 var instruction = document.createElement("h4");
@@ -95,8 +96,8 @@
                 var label = document.createElement("label");
                 label.setAttribute("for", "answer");
                 label.setAttribute("style", "position: relative;margin-top: 10px;")
-                label.innerHTML = definitionArray[randomDefinition] + ": ";
-                quizDiv.appendChild(label)
+                label.innerHTML = (definitionArray[randomDefinition] + ": ");
+                quizDiv.appendChild(label);
 
                 var answer = document.createElement("input");
                 answer.setAttribute("id", "answer" + counter);
@@ -106,6 +107,7 @@
                 counter += 1;
             }
             function checkAnswer() {
+                var quizDiv = document.getElementById("quizDivider");
                 if (userAnswer === termArray[randomDefinition]) {
                     termArray.splice(randomDefinition, 1);
                     definitionArray.splice(randomDefinition, 1);
