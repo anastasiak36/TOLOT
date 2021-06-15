@@ -49,28 +49,28 @@
                 button.setAttribute("onclick", "startQuiz()");
                 button.setAttribute("style", "background-color: LightSkyBlue");
                 buttonDiv.appendChild(button);
-                
-                createTermsArray();
-                createDefinitionsArray();
             }
             //creates the array for the terms entered
             function createTermsArray() {
-                termArray = [];
+                terms = new Array(number)
                 for (var i = 0; i < number; i++) {
                     var term = document.getElementById("term" + i).value;
-                    termArray.push(term);
+                    terms[i] = term;
                 }
+                return terms;
             }
             //creates the array for the definitions entered
             function createDefinitionsArray() {
-                definitionArray = [];
+                definitions = new Array(number);
                 for (var i = 0; i < number; i++) {
                     var def = document.getElementById("def" + i).value;
-                    definitionArray.push(def);
+                    definitions[i] = def;
                 }
+                return definitions;
             }
             //this is the function that creates the label and input for the questions
             function startQuiz() {
+                
                 var quizDiv = document.getElementById("quizDivider");
                 var instruction = document.createElement("h4");
                 instruction.innerHTML = "Type in the correct term for the given definition.";
@@ -84,6 +84,12 @@
                 checkAnswerButton.setAttribute("onclick", "checkAnswer()");
                 checkAnswerButton.setAttribute("style", "background-color: lightskyblue");
                 answerButtonDiv.appendChild(checkAnswerButton);
+                termArray = createTermsArray();
+                definitionArray = createDefinitionsArray();
+                var choicesDiv = document.getElementById("choices");
+                choicesDiv.parentNode.removeChild(choicesDiv);
+                var buttonDiv = document.getElementById("buttonQuiz");
+                buttonDiv.parentNode.removeChild(buttonDiv);
                 quiz();
             }
             var counter = 0;
@@ -94,7 +100,7 @@
                 var label = document.createElement("label");
                 label.setAttribute("for", "answerLabel");
                 label.setAttribute("style", "position: relative;margin-top: 10px;")
-                var temp = definitionArray[randomDefinition]
+                var temp = definitionArray[randomDefinition] + ": "
                 label.innerHTML = temp;
                 quizDiv.appendChild(label);
 
@@ -102,11 +108,11 @@
                 answer.setAttribute("id", "answer" + counter);
                 answer.setAttribute("style", "position: relative; margin-top: 10px");
                 quizDiv.appendChild(answer);
-                userAnswer = document.getElementById("answer" + counter).value;
                 counter += 1;
             }
             function checkAnswer() {
                 var quizDiv = document.getElementById("quizDivider");
+                userAnswer = document.getElementById("answer" + (counter - 1)).value;
                 if (userAnswer === termArray[randomDefinition]) {
                     termArray.splice(randomDefinition, 1);
                     definitionArray.splice(randomDefinition, 1);
@@ -121,7 +127,16 @@
                     declaration.setAttribute("style", "color: crimson")
                     quizDiv.appendChild(declaration);
                 }
-                quiz();
+                if (termArray.length > 0)
+                    quiz();
+                else {
+                    heading = document.createElement("h2");
+                    heading.setAttribute("style", "color: blue")
+                    heading.innerHTML = "Congrats, you finished the quiz! Return to the main page or start over by refreshing!";
+                    quizDiv.appendChild(heading);
+                    var checkAnswerButton = document.getElementById("checkAnswerButton");
+                    checkAnswerButton.parentNode.removeChild(checkAnswerButton);
+                }
             }
             
         </script>
