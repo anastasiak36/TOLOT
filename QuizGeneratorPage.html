@@ -55,21 +55,19 @@
             }
             //creates the array for the terms entered
             function createTermsArray() {
-                var terms = new Array(number);
-                for (var i = 0; i < terms.length; i++) {
-                    var term = (document.getElementById("term" + i).value);
-                    terms[i] = term;
+                termArray = [];
+                for (var i = 0; i < number; i++) {
+                    var term = document.getElementById("term" + i).value;
+                    termArray.push(term);
                 }
-                termArray = terms;
             }
             //creates the array for the definitions entered
             function createDefinitionsArray() {
-                var definitions = new Array(number);
-                for (var i = 0; i < definitions.length; i++) {
-                    var def = (document.getElementById("def" + i).value);
-                    definitions[i] = def;
+                definitionArray = [];
+                for (var i = 0; i < number; i++) {
+                    var def = document.getElementById("def" + i).value;
+                    definitionArray.push(def);
                 }
-                definitionArray = definitions;
             }
             //this is the function that creates the label and input for the questions
             function startQuiz() {
@@ -94,9 +92,10 @@
 
                 var quizDiv = document.getElementById("quizDivider");
                 var label = document.createElement("label");
-                label.setAttribute("for", "answer");
+                label.setAttribute("for", "answerLabel");
                 label.setAttribute("style", "position: relative;margin-top: 10px;")
-                label.innerHTML = (definitionArray[randomDefinition] + ": ");
+                var temp = definitionArray[randomDefinition]
+                label.innerHTML = temp;
                 quizDiv.appendChild(label);
 
                 var answer = document.createElement("input");
