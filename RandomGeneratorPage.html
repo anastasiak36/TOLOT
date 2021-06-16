@@ -8,12 +8,16 @@
                 var number = parseInt(document.getElementById("numOfItems").value);
                 var choices = document.getElementById("choices");
                 
-                for (var i = 0; i < number; i++) {
+                for (var i = 1; i <= number; i++) {
                     var input = document.createElement("input");
-                    input.setAttribute("id", i);
-                    input.setAttribute("placeholder", "Choice: " + (i + 1));
+                    input.setAttribute("id", (i - 1));
+                    input.setAttribute("placeholder", "Choice: " + (i));
                     input.setAttribute("style", "position: relative; margin-right: 10px; margin-top: 10px;");
-                    choices.appendChild(input)
+                    choices.appendChild(input);
+                    if (i % 5 == 0) {
+                        var lineBr = document.createElement("br");
+                        choices.appendChild(lineBr)
+                    }
                 }
                 var button = document.createElement("input");
                 var buttonDiv = document.getElementById("buttonChoice");
@@ -81,8 +85,8 @@
             <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
             <img src = "Images/blue_feather.png" alt = "Random" width = "100" height = "100" style = "position:relative;float: left;margin-left: 200px;">
             <img src = "Images/blue_feather_reflected.png" alt = "feather" width = "100" height = "100" style = "position:relative; float: right;margin-right: 200px">
-            <img src = "Images/dice1.jpg" alt = "die1" width = "210" height = "230" style = "position:absolute; margin-top:200px; float: left; margin-left: -250px;">
-            <img src = "Images/dice2.jpg" alt = "die2" width = "210" height = "230" style = "position:absolute; margin-top:200px; float: right; margin-left: 900px">
+            <img src = "Images/dice1.jpg" alt = "die1" width = "210" height = "230" style = "position:absolute; margin-top:200px; float: left; margin-left: -270px;">
+            <img src = "Images/dice2.jpg" alt = "die2" width = "210" height = "230" style = "position:absolute; margin-top:200px; float: right; margin-left: 910px">
             <h1 style = "text-align: center;">Welcome to the Random Generator!</h1>
             <form>
                 <div style = "text-align: center;">
