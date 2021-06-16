@@ -49,12 +49,13 @@
                 button.setAttribute("onclick", "startQuiz()");
                 button.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 325px");
                 buttonDiv.appendChild(button);
-                
+                createExitButton();
             }
 
             function createExitButton() {
                 exitButton = document.createElement("button");
                 exitButton.setAttribute("type", "button");
+                exitButton.setAttribute("id", "exitButton");
                 exitButton.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 625px")
                 exitButton.innerHTML = '<a href = "https://anastasiak36.github.io/TOLOT/"> Return Home</a>'
                 var exitButtonDiv = document.getElementById("buttonQuiz");
@@ -101,7 +102,8 @@
                 choicesDiv.parentNode.removeChild(choicesDiv);
                 var quizForButton = document.getElementById("quizButton");
                 quizForButton.parentNode.removeChild(quizForButton);
-                createExitButton();
+                var exitButton = document.getElementById("exitButton");
+                exitButton.setAttribute("style", "background-color: LightSkyBlue; position:relative; text-align: left; margin-left: 900px")
                 quiz();
             }
             var counter = 0;
@@ -194,12 +196,7 @@
         </div>
         
         <div id= "choices" style = "text-align:center;position:relative;margin-top: 50px;"></div>
-        <div id= "buttonDivider">
-            <div id = "buttonQuiz" style ="position:relative;margin-top: 10px;">
-            </div>
-
-            <div id = "buttonExit" style ="text-align: right;position:relative;margin-top: 10px;margin-right: 300px;">
-            </div>
+        <div id = "buttonQuiz" style ="position:relative;margin-top: 10px;">
         </div>
         <div id = "quizDivider" style = "text-align:center; position: relative; margin-top: 50px"></div>
         <div id = "answerButtonDivider" style = "text-align:center; position: relative; margin-top: 10px"></div>
